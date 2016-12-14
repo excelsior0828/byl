@@ -1,0 +1,23 @@
+doctype html
+html
+  title Blossom Your Life
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat')
+  link(rel='stylesheet', href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css')
+  link(rel='stylesheet', href='http://localhost:3000/styles/by1.css')
+  style.
+    body,h1 {font-family: "Montserrat", sans-serif; font-weight: bold}
+    img {margin-bottom: -7px}
+    .w3-row-padding img {margin-bottom: 12px}
+  body
+    // Navbar (Home)
+    .w3-top
+      ul#myNavbar.w3-navbar
+        li
+          a.w3-padding-large(href='/byl') HOME
+        li.w3-hide-small.w3-right
+          a.w3-padding-large.w3-hover-red(href='#', onclick='w3_open()')
+            i.fa.fa-search
+    block content

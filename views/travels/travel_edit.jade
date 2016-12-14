@@ -1,0 +1,39 @@
+extends ../layout/extends_layout.jade
+block content
+
+  // Navbar (Search)
+  nav#mySidenav.w3-sidenav.w3-black.w3-card-2.w3-animate-top.w3-center.w3-xlarge.w3-display-topright(style='display:none;height:auto;')
+    a.w3-closenav.w3-xlarge.w3-right.w3-display-topright(href='javascript:void(0)', onclick='w3_close()', style='padding:5px 22px')
+      i.fa.fa-remove
+    a.w3-text-grey.w3-hover-black(href='/byl/flower') Flowers
+    a.w3-text-grey.w3-hover-black(href='/byl/travel') Travels
+    a.w3-text-grey.w3-hover-black(href='/byl/other') Others
+    if user
+      a.w3-text-grey.w3-hover-black(href='/byl/travel/add') Add
+      a.w3-text-grey.w3-hover-black(href='/byl/travel/delete') Delete        
+      a.w3-text-grey.w3-hover-black(href='/auth/logout') Log Out
+    else
+      a.w3-text-grey.w3-hover-black(href='/auth/login') Administrator
+  // !PAGE CONTENT!
+  .w3-content(style='max-width:1500px')
+    .w3-container.w3-padding-32.w3-center.w3-opacity.w3-margin-bottom
+      .w3-clear
+        h1 TRAVELS EDIT
+  // Photo Grid
+  for travel in travels
+    .w3-row-padding
+      .w3-third
+        .section
+          img(src=travel.path)
+          .photo-text
+            form(action="/byl/travel/edit" method="post" enctype="multipart/form-data")
+              input(type="text" name="category" size="15" value=travel.category placeholder="travel category")
+              input(type="hidden" name="travelId" value=travel.travelId placeholder="travel travelId" style="width:60px; height:45px;")
+              br
+              input(type="file" name="img" size="1" style="width:85px; height:50px")
+              br
+              input(type="submit")
+  // Clear floats
+  .w3-clear
+  //navbar & sidenave
+  include ../layout/includes_navbar.jade

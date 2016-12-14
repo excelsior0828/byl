@@ -1,0 +1,77 @@
+extends ../layout/extends_layout.jade
+block content
+
+  // Navbar (Search)
+  nav#mySidenav.w3-sidenav.w3-black.w3-card-2.w3-animate-top.w3-center.w3-xlarge.w3-display-topright(style='display:none;height:auto;')
+    a.w3-closenav.w3-xlarge.w3-right.w3-display-topright(href='javascript:void(0)', onclick='w3_close()', style='padding:5px 22px')
+      i.fa.fa-remove
+    a.w3-text-grey.w3-hover-black(href='/byl/flower') Flowers
+    a.w3-text-grey.w3-hover-black(href='/byl/travel') Travels
+    a.w3-text-grey.w3-hover-black(href='/byl/other') Others
+    if user
+      a.w3-text-grey.w3-hover-black(href='/byl/flowers/' + flowers.flowerId + '/add') Add
+      a.w3-text-grey.w3-hover-black(href='/byl/flowers/' + flowers.flowerId + '/edit') Edit
+      a.w3-text-grey.w3-hover-black(href='/byl/flowers/' + flowers.flowerId + '/delete') Delete        
+      a.w3-text-grey.w3-hover-black(href='/auth/logout') Log Out
+    else
+      a.w3-text-grey.w3-hover-black(href='/auth/login') Administrator
+  // !PAGE CONTENT!
+  .w3-content(style='max-width:1500px')
+    .w3-container.w3-padding-32.w3-center.w3-opacity.w3-margin-bottom
+      .w3-clear
+        h1 
+          =flowers.category
+  // Photo Grid
+  for flowerId in flowersId
+    .w3-row-padding
+      .w3-third
+        .section
+          img.interest(src=flowerId.path, style='width:100%', onclick='onClick(this)', data-name=flowerId.name, data-materials=flowerId.materials, data-size=flowerId.size, data-weight=flowerId.weight, data-price=flowerId.price)
+  // Clear floats
+  .w3-clear
+  // Modal for full size images on click
+  #modal01.w3-modal.w3-black(onclick="this.style.display='none'" style="padding:20px")
+    span.w3-closebtn.w3-hover-red.w3-text-white.w3-xxxlarge.w3-container.w3-display-topright ×
+    .w3-animate-zoom.w3-transparent
+      div.w3-row
+        div.w3-col.m7.w3-center.w3-padding-large
+          img#img01.w3-image(style="width:620px;height:auto;")
+        div.w3-col.m5(style="padding:50px 0")
+          p(style="text-align:center;color:rgba(71,224,115,.94);font-size:30px;font-type:bold") Description
+          .modal-text
+            p 
+              #name(style='color:lightpink')
+              #flowerId-name          
+            p 
+              #materials(style='color:lightpink')
+              #flowerId-materials          
+            p 
+              #size(style='color:lightpink')
+              #flowerId-size          
+            p 
+              #weight(style='color:lightpink')
+              #flowerId-weight          
+            p 
+              #price(style='color:lightpink')
+              #flowerId-price
+  //Footer & navbar & sidenave
+  include ../layout/includes_navbar.jade
+  // Modal Image Gallery
+  script.
+    function onClick(element) {
+      //image
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      //image-description
+      document.getElementById("flowerId-name").innerHTML = element.getAttribute('data-name');
+      document.getElementById("flowerId-materials").innerHTML = element.getAttribute('data-materials');
+      document.getElementById("flowerId-size").innerHTML = element.getAttribute('data-size');
+      document.getElementById("flowerId-weight").innerHTML = element.getAttribute('data-weight');
+      document.getElementById("flowerId-price").innerHTML = element.getAttribute('data-price'); 
+      //image-description-text
+      document.getElementById("name").innerHTML = "NAME : ";
+      document.getElementById("materials").innerHTML = "MATERIALS(재료) : ";
+      document.getElementById("size").innerHTML = "SIZE(가로x세로x높이) : ";
+      document.getElementById("weight").innerHTML = "WEIGHTS(kg) : ";
+      document.getElementById("price").innerHTML = "PRICE(￦) : ";
+    }

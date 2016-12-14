@@ -1,0 +1,39 @@
+extends ../layout/extends_layout.jade
+block content
+
+  // Navbar (Search)
+  nav#mySidenav.w3-sidenav.w3-black.w3-card-2.w3-animate-top.w3-center.w3-xlarge.w3-display-topright(style='display:none;height:auto;')
+    a.w3-closenav.w3-xlarge.w3-right.w3-display-topright(href='javascript:void(0)', onclick='w3_close()', style='padding:5px 22px')
+      i.fa.fa-remove
+    a.w3-text-grey.w3-hover-black(href='/byl/flower') Flowers
+    a.w3-text-grey.w3-hover-black(href='/byl/travel') Travels
+    a.w3-text-grey.w3-hover-black(href='/byl/other') Others
+    if user
+      a.w3-text-grey.w3-hover-black(href='/byl/flower/edit') Edit
+      a.w3-text-grey.w3-hover-black(href='/byl/flower/delete') Delete        
+      a.w3-text-grey.w3-hover-black(href='/auth/logout') Log Out
+    else
+      a.w3-text-grey.w3-hover-black(href='/auth/login') Administrator
+  // !PAGE CONTENT!
+  .w3-content(style='max-width:1500px')
+    .w3-container.w3-padding-32.w3-center.w3-opacity.w3-margin-bottom
+      .w3-clear
+        h1 FLOWERS ADD
+  // Photo Grid
+  for flower in flowers
+    .w3-row-padding
+      .w3-third
+        .section
+          img.interest(src=flower.path, style='width:100%')
+  //Add button
+  form(action='/byl/flower/add' method='post' enctype="multipart/form-data")
+    p
+      input(type='text' name='category' placeholder='category')
+    p
+      input(type='file' name='img' size='3')
+    p
+      input(type='submit' value='Add')
+  // Clear floats
+  .w3-clear
+  //navbar & sidenave
+  include ../layout/includes_navbar.jade

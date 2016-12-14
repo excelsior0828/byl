@@ -1,0 +1,26 @@
+html
+  title Blossom Your Life
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
+  link(rel='stylesheet', href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css')
+  link(rel='stylesheet', href='http://localhost:3000/styles/by1.css')
+  link(rel='stylesheet', href='http://localhost:3000/styles/by11.css')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat')
+  body
+    #home.bgimg-4.w3-display-container(style="opacity:.9")
+      div.w3-col.m5(style="margin: 50px 100px;")
+        h1
+          a(href='/byl' style="font-size:50px;text-decoration:none;") BYL
+        form(action='/auth/login' method='post')
+            ul(style="list-style:none")
+              li(style="margin-bottom:10px")
+                input(type='text' name='username' placeholder='Username' style="background:transparent;border:none;border-bottom: 2px solid black")
+              li
+                input(type='password' name='password' placeholder='Password' style="background:transparent;border:none;border-bottom: 2px solid black")
+              br
+              li
+                input(type='submit' value='Log In')
+                
+                
